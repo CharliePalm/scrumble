@@ -1,1 +1,39 @@
-/* You can add global styles to this file, and also import other style files */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+$foreground_primary: #213734;
+$foreground_secondary: #81623a;
+$background_primary: #20202088;
+$secondary: #3c3b3d;
+
+html {
+  font-size: 24;
+	font-family: Rockwell,Courier Bold,Courier,Georgia,Times,Times New Roman,serif;
+  color: $secondary;
+  background-color: $background_primary;
+}
+
+/**
+
+.foreground-text {
+  color: $foreground_primary;
+}
+
+.text-button {
+  cursor: pointer;
+  text-shadow: 2px 0 3 #000, 0 -2px 0 #000, 0 2px 0 #000, -2px 0 0 #000 !important;
+  opacity: 70%;
+  transition: all .15s ease-in;
+  &:hover {
+    opacity: 100%;
+  }
+}
+button {
+  cursor: pointer;
+  transition: all .15s ease-in;
+  background-color: $foreground_secondary;
+  &:hover {
+    color: $foreground_primary;
+  }
+}
+*/
