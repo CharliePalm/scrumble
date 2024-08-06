@@ -19,7 +19,7 @@ export class AppComponent {
   });
 
   getChar(blockIdx: number, strIdx: number): string {
-    return this.getStringFromUnicode(this.blocks[blockIdx][strIdx]); // 65 is where teh capital letters start
+    return this.getStringFromUnicode(this.blocks[blockIdx][strIdx]); // 65 is where capital letters start
   }
 
   getStringFromUnicode(c: number) {
