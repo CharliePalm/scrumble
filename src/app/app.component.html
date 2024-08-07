@@ -5,7 +5,7 @@
   <h2 class="text-primary">
     "{{hint}}"
   </h2>
-  <div class="grid grid-rows-1 text-xs md:text-xl gap-5" [style]="'grid-template-columns: repeat(' + NUM_TRIES + ', minmax(0, 1fr))'">
+  <div class="grid grid-rows-1 text-xs md:text-xl gap-2 md:gap-5 w-8/12 md:w-7/12" [style]="'grid-template-columns: repeat(' + NUM_TRIES + ', minmax(0, 1fr))'">
     <div *ngFor="let move of getMoveDisplay()">
       <div [ngClass]="{'text-selected': move == '✓', 'text-fail': move == 'x'}">
         {{move}}

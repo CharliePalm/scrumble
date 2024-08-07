@@ -65,6 +65,9 @@ export class AppComponent {
       this.openModal();
     } else {
       this.moves[this.moveIdx++] = 'x';
+      if (this.moveIdx === NUM_TRIES) {
+        this.openModal();
+      }
       this.shakeSubject.next();
     }
   }
@@ -79,7 +82,7 @@ export class AppComponent {
   }
 
   saveMove(dir: 'up' | 'left' | 'down' | 'right'): void {
-    this.moves[this.moveIdx++] = (dir);
+    this.moves[this.moveIdx++] = dir;
   }
 
   makeMove(dir: 'up' | 'left' | 'down' | 'right') {
@@ -93,7 +96,7 @@ export class AppComponent {
   openModal() {
     this.showModal = true;
     this.copied = false;
-    this.won = this.moveIdx !== NUM_TRIES && this.isCorrect();
+    this.won = this.moveIdx !== NUM_TRIES || this.isCorrect();
     this.done = true;
   }
 
