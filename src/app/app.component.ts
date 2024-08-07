@@ -84,7 +84,7 @@ export class AppComponent {
   makeMove(dir: 'up' | 'left' | 'down' | 'right') {
     this.moveMap.get(dir)!();
     this.saveMove(dir);
-    if (this.moveIdx === 12) {
+    if (this.moveIdx === NUM_TRIES) {
       this.openModal();
     }
   }
@@ -92,7 +92,7 @@ export class AppComponent {
   openModal() {
     this.showModal = true;
     this.copied = false;
-    this.won = this.moveIdx !== 12;
+    this.won = this.moveIdx !== NUM_TRIES;
   }
 
   closeWelcomeModal() { this.showWelcomeModal = false; }
