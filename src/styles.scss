@@ -25,27 +25,4 @@ html {
       scrollbar-width: none;  /* Firefox */
   }
 }
-/**
 
-.foreground-text {
-  color: $foreground_primary;
-}
-
-.text-button {
-  cursor: pointer;
-  text-shadow: 2px 0 3 #000, 0 -2px 0 #000, 0 2px 0 #000, -2px 0 0 #000 !important;
-  opacity: 70%;
-  transition: all .15s ease-in;
-  &:hover {
-    opacity: 100%;
-  }
-}
-button {
-  cursor: pointer;
-  transition: all .15s ease-in;
-  background-color: $foreground_secondary;
-  &:hover {
-    color: $foreground_primary;
-  }
-}
-*/
