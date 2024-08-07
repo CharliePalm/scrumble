@@ -130,22 +130,12 @@ module.exports = {
     },
     caretColor: ({ theme }) => theme('colors'),
     colors: ({ colors }) => ({
-      primary: {
-          '50': '#ebf5eb',
-          '100': '#d3e8d3',
-          '200': '#a8d1a8',
-          '300': '#7ab97a',
-          '400': '#4c9e4c',
-          '500': '#218521',
-          '600': '#196b19',
-          '700': '#135213',
-          '800': '#0d3a0d',
-          '900': '#082308',
-          '950': '#041204'
-      }, // forest
-      foregroundSecondary: '#81623a',
+      primary: '#4f81aa', // forest
+      foregroundSecondary: '#ffd150',
+      selected: '#6fc37a',
       backgroundSecondary: '#20202088',
-      secondary: '#3c3b3d',
+      secondary: '#f9f9f9',
+      fail: '#cc3533',
       inherit: colors.inherit,
       current: colors.current,
       transparent: colors.transparent,

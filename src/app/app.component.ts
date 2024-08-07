@@ -93,9 +93,8 @@ export class AppComponent {
   openModal() {
     this.showModal = true;
     this.copied = false;
-    this.won = this.moveIdx !== NUM_TRIES;
+    this.won = this.moveIdx !== NUM_TRIES && this.isCorrect();
     this.done = true;
-    console.log(this.done);
   }
 
   closeWelcomeModal() { this.showWelcomeModal = false; }
