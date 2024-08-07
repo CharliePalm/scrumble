@@ -40,13 +40,13 @@
 
   <div class="w-1/6 h-2/6 grid content-normal grid-cols-3 gap-4 font-extrabold text-3xl">
     <div></div>
-    <div><button (click)="makeMove('up')" [disabled]="solved">↑</button></div>
+    <div><button (click)="makeMove('up')" [disabled]="solved || done">↑</button></div>
     <div></div>
-    <div><button (click)="makeMove('left')" [disabled]="solved">←</button></div>
-    <div class="text-primary-800"><button (click)="check()" [disabled]="solved">✓</button></div>
-    <div><button (click)="makeMove('right')" [disabled]="solved">→</button></div>
+    <div><button (click)="makeMove('left')" [disabled]="solved || done">←</button></div>
+    <div class="text-primary-800"><button (click)="check()" [disabled]="solved || done">✓</button></div>
+    <div><button (click)="makeMove('right')" [disabled]="solved || done">→</button></div>
     <div></div>
-    <div><button (click)="makeMove('down')" [disabled]="solved">↓</button></div>
+    <div><button (click)="makeMove('down')" [disabled]="solved || done">↓</button></div>
     <div></div>
   </div>
   <div class="h-1"></div>

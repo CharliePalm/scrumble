@@ -24,6 +24,7 @@ export class AppComponent {
   numColumns = this.chars.length + 4;
   solved = false;
   won = false;
+  done = false;
 
   moveMap = new Map<'up' | 'left' | 'down' | 'right', () => void>([
     ['up', this.track.up],
@@ -93,6 +94,8 @@ export class AppComponent {
     this.showModal = true;
     this.copied = false;
     this.won = this.moveIdx !== NUM_TRIES;
+    this.done = true;
+    console.log(this.done);
   }
 
   closeWelcomeModal() { this.showWelcomeModal = false; }
