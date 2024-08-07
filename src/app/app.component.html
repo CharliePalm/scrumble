@@ -1,28 +1,138 @@
 <div class="grid place-items-center h-screen text-center">
-
-  <h1 class="text-3xl font-bold">
+  <h1 class="text-5xl font-bold">
     Scrumble
   </h1>
-  <h3>
+  <h2>
     "{{hint}}"
-  </h3>
-  <div class="grid grid-rows-1">
-    <div *ngFor="let block of blocks; index as i;">
-      <div *ngFor="let char of block; index as j;">
-        {{getChar(i, j)}}
+  </h2>
+  <div class="text-4xl" class="grid grid-rows-1 text-xl gap-5" [style]="'grid-template-columns: repeat(' + NUM_TRIES + ', minmax(0, 1fr))'">
+    <div *ngFor="let move of getMoveDisplay()" >
+      {{move}}
+    </div>
+  </div>
+  <div class="grid grid-rows-3 text-3xl gap-0 w-96" [style]="'grid-template-columns: repeat(' + numColumns + ', minmax(0, 1fr))'">
+    <div *ngFor="let word of getLetters(2); index as i;">
+      <div [ngStyle]="{'opacity': [0, numColumns - 1].includes(i) ? .035 : [1, numColumns - 2].includes(i) ? .04 : .045}">
+        {{word}}
+      </div>
+    </div>
+    <div *ngFor="let word of getLetters(1); index as i;">
+      <div [ngStyle]="{'opacity': [0, numColumns - 1].includes(i) ? .04 : [1, numColumns - 2].includes(i) ? .05 : .1}">
+        {{word}}
+      </div>
+    </div>
+    <div *ngFor="let word of getLetters(); index as i;" >
+      <div [ngStyle]="{'opacity': [0, numColumns - 1].includes(i) ? .08 : [1, numColumns - 2].includes(i) ? .1 : .75}">
+        {{word}}
+      </div>
+    </div>
+    <div *ngFor="let word of getLetters(-1); index as i;">
+      <div [ngStyle]="{'opacity': [0, numColumns - 1].includes(i) ? .04 : [1, numColumns - 2].includes(i) ? .05 : .1}">
+        {{word}}
+      </div>
+    </div>
+    <div *ngFor="let word of getLetters(-2); index as i;">
+      <div [ngStyle]="{'opacity': [0, numColumns - 1].includes(i) ? .035 : [1, numColumns - 2].includes(i) ? .04 : .045}">
+        {{word}}
       </div>
     </div>
   </div>
 
-  <div class="w-2/6 h-2/6 grid content-normal grid-cols-3 gap-4 font-extrabold text-3xl">
+  <div class="w-1/6 h-2/6 grid content-normal grid-cols-3 gap-4 font-extrabold text-3xl">
     <div></div>
-    <div><button (click)="track.up()">↑</button></div>
+    <div><button (click)="makeMove('up')" [disabled]="solved">↑</button></div>
     <div></div>
-    <div><button (click)="track.left()">←</button></div>
-    <div><button (click)="check()">✓</button></div>
-    <div><button (click)="track.right()">→</button></div>
+    <div><button (click)="makeMove('left')" [disabled]="solved">←</button></div>
+    <div class="text-primary-800"><button (click)="check()" [disabled]="solved">✓</button></div>
+    <div><button (click)="makeMove('right')" [disabled]="solved">→</button></div>
     <div></div>
-    <div><button (click)="track.down()">↓</button></div>
+    <div><button (click)="makeMove('down')" [disabled]="solved">↓</button></div>
     <div></div>
   </div>
+  <div class="h-1"></div>
 </div>
+
+<!--todo - animate this bitch and make it a shared component for future use in other projects-->
+<ng-container *ngIf="showModal">
+  <div class="relative z-10 ease-in-out duration-300" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+    <div class="fixed inset-0 bg-gray-500 bg-opacity-50 transition-opacity" aria-hidden="true"></div>
+
+    <div class="fixed inset-0 z-10 w-screen overflow-y-auto">
+      <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0 ease-out duration-300">
+        <div class="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg">
+          <div class="bg-secondary px-4 pb-4 pt-5 sm:p-6 sm:pb-4">
+            <div class="mt-3 text-center sm:ml-4 sm:mt-0">
+              <h3 class="text-3xl font-semibold leading-6 text-gray-200 text-center">{{won ? 'Correct!' : 'Better luck next time!'}}</h3>
+              <div class="mt-2">
+                <p class="text-sm text-gray-200">{{won ? 'Well scrumbled' : 'Thanks for playing!'}}</p>
+              </div>
+            </div>
+          </div>
+          <div class="bg-backgroundSecondary px-4 py-3 text-center sm:px-6">
+            <div class="inline-flex w-full justify-center">
+              <button
+                type="button"
+                class="rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-xl ring-1 ring-inset ring-gray-300 hover:bg-gray-50 sm:mt-0 sm:w-auto ease-in duration-200"
+                (click)="closeModal()"
+              >
+                Close
+              </button>
+              <button
+                type="button"
+                class="rounded-md bg-primary-700 px-3 py-2 text-sm font-semibold text-white shadow-xl primary sm:ml-3 sm:w-auto disabled:hover:bg-primary-700 hover:bg-primary-800 ease-in duration-200"
+                ngxClipboard
+                [cbContent]="getCopyContent()"
+                [disabled]="copied"
+                (cbOnSuccess)="copied = true"
+              >
+                {{!copied ? 'Share results' : '✓'}}
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-container>
+
+<ng-container *ngIf="showWelcomeModal">
+  <div class="relative z-10 ease-in-out duration-300" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+    <div class="fixed inset-0 bg-gray-500 bg-opacity-50 transition-opacity" aria-hidden="true"></div>
+
+    <div class="fixed inset-0 z-10 w-screen overflow-y-auto">
+      <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0 ease-out duration-300">
+        <div class="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg">
+          <div class="bg-secondary px-4 pb-4 pt-5 sm:p-6 sm:pb-4">
+            <div class="mt-3 text-center sm:ml-4 sm:mt-0">
+              <h3 class="text-3xl font-semibold leading-6 text-gray-200 text-center">Welcome to Scrumble!</h3>
+              <div class="mt-2">
+                <br>
+                <p class="text-sm text-gray-300">Scrumble is a word search game where your goal is to find the secret phrase given a hint phrase</p>
+                <br>
+                <p class="text-sm text-gray-300">The catch is that the letters have all been scrumbled! You need to move the frame up and down and side to side to side to line the phrase up in the highlighted area.</p>
+                <br>
+                <p class="text-sm text-gray-300">You also only have {{NUM_TRIES}} attempts, so you have to make your moves count! This is made easier by the fact that Moving the frame up moves every letter up by one, A -> B, B -> C etc. and the opposite is true when you move the frame down</p>
+                <br>
+                <p class="text-sm text-gray-300">Every day's puzzle is the same, but each player might have a different starting position in the frame, so feel free to share your solution with your friends!</p>
+                <br>
+                <p class="text-sm text-gray-300">Good luck!</p>
+                <br>
+              </div>
+            </div>
+          </div>
+          <div class="bg-backgroundSecondary px-4 py-3 text-center sm:px-6">
+            <div class="inline-flex w-full justify-center">
+              <button
+                (click)="closeWelcomeModal()"
+                type="button"
+                class="rounded-md bg-primary-700 px-3 py-2 text-sm font-semibold text-white shadow-xl primary sm:ml-3 sm:w-auto disabled:hover:bg-primary-700 hover:bg-primary-800 ease-in duration-200"
+              >
+                Get Scrumblin'!
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-container>
