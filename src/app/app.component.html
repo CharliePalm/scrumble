@@ -12,7 +12,7 @@
       </div>
     </div>
   </div>
-  <div class="grid grid-rows-3 text-xl md:text-3xl gap-0 w-96" [style]="'grid-template-columns: repeat(' + numColumns + ', minmax(0, 1fr))'">
+  <div class="grid grid-rows-5 text-xl md:text-3xl gap-0 w-96" [style]="'grid-template-columns: repeat(' + numColumns + ', minmax(0, 1fr))'">
     <div *ngFor="let word of getLetters(2); index as i;">
       <div [ngStyle]="{'opacity': [0, numColumns - 1].includes(i) ? .01 : [1, numColumns - 2].includes(i) ? .02 : .03}">
         {{word}}

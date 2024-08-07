@@ -1,7 +1,7 @@
 export const ANSWER = "TO BLUFF";
 export const hint = "To blave";
 export const SCRUMBLE_DAY_ONE = '2024-07-29T05:00:00.000Z';
-export const NOISE_AMOUNT = 3
+export const NOISE_AMOUNT = 2
 export const DISTANCE = 4
 export const NUM_TRIES = 16;
 export class Track {
@@ -13,10 +13,11 @@ export class Track {
     } else {
       this.j = DISTANCE + 13;
     }
+    this.k = ANSWER.length - 1 + NOISE_AMOUNT * 2;
     if (Math.random() < .5) {
-      this.k = DISTANCE * -1 - 1;
+      this.k += DISTANCE * -1 ;
     } else {
-      this.k = DISTANCE + 1;
+      this.k += DISTANCE + 1;
     }
   }
 

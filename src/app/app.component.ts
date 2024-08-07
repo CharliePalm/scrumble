@@ -46,8 +46,8 @@ export class AppComponent {
   getLetters(offset = 0): string[] {
     const baseArray = [...this.noise[0], ...this.chars, ...this.noise[1]];
     return baseArray.map(
-      (_, idx) => this.getStringFromUnicode(baseArray[Math.abs((idx + this.track.k)) % baseArray.length], offset)
-    ).slice(this.noise[0].length - 2, -1 * (this.noise[1].length - 2));
+      (_, idx) => this.getStringFromUnicode(baseArray[Math.abs((idx + this.track.k) % baseArray.length)], offset)
+    );
   }
 
   getStringFromUnicode(c: number, offset = 0) {
