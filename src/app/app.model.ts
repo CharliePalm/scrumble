@@ -1,5 +1,5 @@
-export const ANSWER = "INTO THE FIRE";
-export const hint = "Out of the frying pan";
+export const ANSWER = "TO BLUFF";
+export const hint = "To blave";
 export const SCRUMBLE_DAY_ONE = '2024-07-29T05:00:00.000Z';
 export const NOISE_AMOUNT = 3
 export const DISTANCE = 4
