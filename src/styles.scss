@@ -10,6 +10,8 @@ html {
 	font-family: Rockwell,Courier Bold,Courier,Georgia,Times,Times New Roman,serif;
   color: $secondary;
   background-color: #f9f9f9;
+  touch-action: manipulation;
+  margin: 0; height: 100%; overflow: hidden
 }
 
 @layer utilities {
