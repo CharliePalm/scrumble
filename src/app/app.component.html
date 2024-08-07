@@ -1,8 +1,8 @@
 <div class="grid place-items-center h-screen text-center w-screen overflow-y-scroll no-scrollbar">
-  <div class="h-1 contents">
-    <img class="h-30 md:h-40 place-items-center pt-0" src="assets/logo.png">
+  <div class="h-0.5 md:h-1 contents">
+    <img class="h-24 md:h-40 place-items-center pt-0" src="assets/logo.png">
   </div>
-  <h2 class="text-primary">
+  <h2 class="text-primary h-1">
     "{{hint}}"
   </h2>
   <div class="grid grid-rows-1 text-xs md:text-xl gap-2 md:gap-5 w-8/12 md:w-7/12" [style]="'grid-template-columns: repeat(' + NUM_TRIES + ', minmax(0, 1fr))'">
@@ -40,7 +40,7 @@
     </div>
   </div>
 
-  <div class="w-50 grid content-normal grid-cols-3 gap-4 font-extrabold text-4xl">
+  <div class="w-50 grid content-normal grid-cols-3 gap-4 font-extrabold text-3xl md:text-4xl">
     <div></div>
     <div><button (click)="makeMove('up')" [disabled]="solved || done">↑</button></div>
     <div></div>
