@@ -1,7 +1,4 @@
 import * as moment from "moment";
-
-export const ANSWER = "TO BLUFF";
-export const hint = "To blave";
 export const SCRUMBLE_DAY_ONE = '2024-07-29T05:00:00.000Z';
 export const NOISE_AMOUNT = 2
 export const DISTANCE = 4;
@@ -20,7 +17,7 @@ export class Track {
     } else {
       this.j = DISTANCE + 13;
     }
-    this.k = 2 * (ANSWER.length + 1);
+    this.k = 2 * (this.answer.length + 1);
     if (Math.random() < .5) {
       this.k += DISTANCE * -1 ;
     } else {
@@ -39,11 +36,11 @@ export function generateNoise(): number[] {
 }
 
 export const puzzleMap: Map<string, [string, string]> = new Map([
-  ["2024-08-07", ["To blave", "To bluff"]], // Princess Bride reference
+  ["2024-08-07", ["To blave", "To bluff"]],
   ["2024-08-08", ["A sauce, or a dance", "Salsa"]],
-  ["2024-08-09", ["He who beams up", "Scotty"]], // Star Trek reference
+  ["2024-08-09", ["Graph of x squared", "Parabola"]],
   ["2024-08-10", ["Bury the hatchet", "Reconcile"]],
-  ['2024-08-11', ['Cats out of the bag', 'Revelation']],
+  ['2024-08-11', ['Cat\'s out of the bag', 'Revelation']],
   ["2024-08-12", ["Literary classic dog", "Old Yeller"]],
   ["2024-08-13", ["'The Godfather' actor", "Marlon Brando"]],
   ["2024-08-14", ["World's largest ocean", "Pacific"]],
@@ -52,8 +49,8 @@ export const puzzleMap: Map<string, [string, string]> = new Map([
   ["2024-08-17", ["Having to do with the moon", "Lunar"]],
   ["2024-08-18", ["Burn the midnight oil", "Work late"]],
   ["2024-08-19", ["The Grand Budapest Hotel, and The Life Aquatic", "Wes Anderson"]],
-  ["2024-08-20", ["Our largest neighbor", "Jupiter"]],
-  ["2024-08-21", ["Break a leg", "Good luck"]],
+  ["2024-08-21", ["Broken leg wishes", "Good luck"]],
+  ["2024-08-20", ["He who beams up", "Scotty"]],
   ["2024-08-22", ["Ontario's capital", "Toronto"]],
-  ["2024-08-23", ["Ontario's capital", "Toronto"]],
+  ["2024-08-23", ["Our largest neighbor", "Jupiter"]],
 ]);

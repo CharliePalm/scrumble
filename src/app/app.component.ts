@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NOISE_AMOUNT, NUM_TRIES, SCRUMBLE_DAY_ONE, Track, generateNoise } from './app.model';
+import { NOISE_AMOUNT, NUM_TRIES, SCRUMBLE_DAY_ONE, Track } from './app.model';
 import * as moment from 'moment';
 import { Subject } from 'rxjs';
 
@@ -15,7 +15,7 @@ export class AppComponent implements OnInit {
   track = new Track();
   hint = this.track.hint;
   chars = this.track.answer.replace(/\s+/g, '').toUpperCase().split('').map((v) => v.charCodeAt(0))
-  shakeSubject = new Subject<void>(); // todo
+  shakeSubject = new Subject<void>(); // todo - shake letters or something when user is wrong
   showModal = false;
   copied = false;
   numColumns = this.chars.length + 4;
@@ -90,15 +90,8 @@ export class AppComponent implements OnInit {
     localStorage.setItem('track', JSON.stringify({...this.track, answer: undefined}));
   }
 
-  // band-aid - figure out what lemma of k is true for isCorrect to unequivocally return true
   isCorrect(): boolean {
-    const letters = this.getLetters();
-    for (let i = 2; i < letters.length - 2; i++) {
-      if (letters[i] != this.track.answer[i-2]) {
-        return false;
-      }
-    }
-    return true;
+    return (this.track.j - 13) % 26 === 0 && this.track.k % (this.chars.length + NOISE_AMOUNT * 2) === 0;
   }
 
   getCopyContent(): string {
