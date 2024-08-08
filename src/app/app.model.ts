@@ -25,8 +25,8 @@ export class Track {
     }
   }
 
-  right = () => this.k -= 1;
-  left = () => this.k += 1;
+  right = () => this.k += 1;
+  left = () => this.k -= 1;
   up = () => this.j += 1;
   down = () => this.j -= 1;
 }
