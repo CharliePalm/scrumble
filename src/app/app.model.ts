@@ -40,7 +40,7 @@ export const puzzleMap: Map<string, [string, string]> = new Map([
   ["2024-08-08", ["A sauce, or a dance", "Salsa"]],
   ["2024-08-09", ["Graph of x squared", "Parabola"]],
   ["2024-08-10", ["Bury the hatchet", "Reconcile"]],
-  ['2024-08-11', ['Cat\'s out of the bag', 'Revelation']],
+  ['2024-08-11', ['Cat\'s out of the bag, or John\'s vision', 'Revelation']],
   ["2024-08-12", ["Literary classic dog", "Old Yeller"]],
   ["2024-08-13", ["'The Godfather' actor", "Marlon Brando"]],
   ["2024-08-14", ["World's largest ocean", "Pacific"]],
