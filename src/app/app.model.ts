@@ -4,7 +4,7 @@ export const ANSWER = "TO BLUFF";
 export const hint = "To blave";
 export const SCRUMBLE_DAY_ONE = '2024-07-29T05:00:00.000Z';
 export const NOISE_AMOUNT = 2
-export const DISTANCE = 4
+export const DISTANCE = 4;
 export const NUM_TRIES = 16;
 export class Track {
   hint = puzzleMap.get(moment().format('YYYY-MM-DD'))![0];

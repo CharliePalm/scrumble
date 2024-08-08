@@ -86,13 +86,24 @@ export class AppComponent implements OnInit {
     localStorage.setItem('track', JSON.stringify({...this.track, answer: undefined}));
   }
 
+  // band-aid - figure out what lemma of k is true for isCorrect to unequivocally return true
   isCorrect(): boolean {
-    return (this.track.j - 13) % 26 === 0 && this.track.k % (this.track.answer.length + 1) === 0;
+    const letters = this.getLetters();
+    for (let i = 2; i < letters.length - 2; i++) {
+      if (letters[i] != this.track.answer[i-2]) {
+        return false;
+      }
+    }
+    return true;
   }
 
   getCopyContent(): string {
-    const start = 'Scrumble #' + moment().diff(moment(SCRUMBLE_DAY_ONE), 'day') + '\n' + '"' + this.track.hint + '"' + '\n';
-    return this.track.moves.reduce((prev, curr, idx) => prev + this.emojiMap.get(curr)![0] + ((idx + 1) % 4 === 0 ? '\n' : ''), start).replace('-', '').slice(0, -1);
+    let content = 'Scrumble #' + moment().diff(moment(SCRUMBLE_DAY_ONE), 'day') + '\n' + '"' + this.track.hint + '"' + '\n';
+    content = this.track.moves.reduce((prev, curr, idx) => prev + this.emojiMap.get(curr)![0] + ((idx + 1) % 4 === 0 ? '\n' : ''), content).replace('-', '').slice(0, -1);
+    if (this.isCorrect() && content.charAt(content.length - 1) !== this.emojiMap.get('check')![0]) {
+      content += this.emojiMap.get('check')![0];
+    }
+    return content;
   }
 
   saveMove(dir: 'up' | 'left' | 'down' | 'right'): void {
