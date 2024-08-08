@@ -42,13 +42,13 @@
 
   <div class="w-50 grid content-normal grid-cols-3 gap-4 font-extrabold text-3xl md:text-4xl">
     <div></div>
-    <div><button (click)="makeMove('up')" [disabled]="solved || done">↑</button></div>
+    <div><button (click)="makeMove('up')" [disabled]="solved || done" class="hover:text-warning transition-all duration-200 ease-in-out hover:-translate-y-1">↑</button></div>
     <div></div>
-    <div><button (click)="makeMove('left')" [disabled]="solved || done">←</button></div>
-    <div class="text-selected"><button (click)="check()" [disabled]="solved || done">✓</button></div>
-    <div><button (click)="makeMove('right')" [disabled]="solved || done">→</button></div>
+    <div><button (click)="makeMove('left')" [disabled]="solved || done" class="hover:text-warning transition-all duration-200 ease-in-out hover:-translate-x-1">←</button></div>
+    <div><button (click)="check()" [disabled]="solved || done" class="text-selected hover:text-selectedHover hover:scale-125 transition-all duration-200 ease-in-out">✓</button></div>
+    <div><button (click)="makeMove('right')" [disabled]="solved || done" class="hover:text-warning transition-all duration-200 ease-in-out hover:translate-x-1">→</button></div>
     <div></div>
-    <div><button (click)="makeMove('down')" [disabled]="solved || done">↓</button></div>
+    <div><button (click)="makeMove('down')" [disabled]="solved || done" class="hover:text-warning transition-all duration-200 ease-in-out hover:translate-y-1">↓</button></div>
     <div></div>
   </div>
   <div class="h-1"></div>

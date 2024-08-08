@@ -133,9 +133,11 @@ module.exports = {
       primary: '#4f81aa', // forest
       foregroundSecondary: '#ffd150',
       selected: '#6fc37a',
+      selectedHover: '#528e5a',
       backgroundSecondary: '#20202088',
       secondary: '#f9f9f9',
       fail: '#cc3533',
+      warning: '#ffd150',
       inherit: colors.inherit,
       current: colors.current,
       transparent: colors.transparent,
