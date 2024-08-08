@@ -54,6 +54,21 @@
   <div class="h-1"></div>
 </div>
 
+<!-- todo - add arrows ?
+<ng-container>
+  <div class="absolute bottom-10 left-3 opacity-60 -z-10">
+    <img class="h-8 pt-0 rotate-12" src="assets/blueU.png">
+  </div>
+  <div class="absolute bottom-20 right-8 opacity-60 -z-10">
+    <img class="h-8 pt-0 rotate-12" src="assets/greenL.png">
+  </div>
+  <div class="absolute bottom-56 right-24 opacity-60 -z-10">
+    <img class="h-8 pt-0 rotate-12" src="assets/yellowR.png">
+  </div>
+</ng-container>
+
+-->
+
 <!--todo - animate this bitch and make it a shared component for future use in other projects-->
 <ng-container *ngIf="showModal">
   <div class="relative z-10 ease-in-out duration-300 max-h-screen" aria-labelledby="modal-title" role="dialog" aria-modal="true">
@@ -73,7 +88,7 @@
             </div>
           </div>
           <div class="bg-gray-600 px-4 py-3 text-center sm:px-6">
-            <div class="inline-flex w-full justify-center">
+            <div class="inline-flex gap-3 w-full justify-center">
               <button
                 type="button"
                 class="rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-xl ring-1 ring-inset ring-gray-300 hover:bg-gray-100 sm:mt-0 sm:w-auto ease-in duration-200"
