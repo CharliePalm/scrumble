@@ -52,6 +52,10 @@ export class AppComponent implements OnInit {
         this.track.k = parsedTrack.k;
         this.showWelcomeModal = false;
         this.done = this.track.moveIdx === NUM_TRIES || this.track.moves.indexOf('check') !== -1;
+        this.won = this.track.moveIdx !== NUM_TRIES || this.isCorrect();
+        if (this.done) {
+          this.showModal = true;
+        }
       }
     }
   }
@@ -99,7 +103,7 @@ export class AppComponent implements OnInit {
 
   getCopyContent(): string {
     let content = 'Scrumble #' + moment().diff(moment(SCRUMBLE_DAY_ONE), 'day') + '\n' + '"' + this.track.hint + '"' + '\n';
-    content = this.track.moves.reduce((prev, curr, idx) => prev + this.emojiMap.get(curr)![0] + ((idx + 1) % 4 === 0 ? '\n' : ''), content).replace('-', '').slice(0, -1);
+    content = this.track.moves.reduce((prev, curr, idx) => prev + this.emojiMap.get(curr)![0] + ((idx + 1) % 4 === 0 ? '\n' : ''), content).replace('-', '').slice(0, -2);
     if (this.isCorrect() && content.charAt(content.length - 1) !== this.emojiMap.get('check')![0]) {
       content += this.emojiMap.get('check')![0];
     }
