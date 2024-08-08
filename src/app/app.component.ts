@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NOISE_AMOUNT, NUM_TRIES, SCRUMBLE_DAY_ONE, Track, generateNoise } from './app.model';
 import * as moment from 'moment';
 import { Subject } from 'rxjs';
@@ -8,17 +8,14 @@ import { Subject } from 'rxjs';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   showWelcomeModal = true;
   NUM_TRIES = NUM_TRIES;
   title = 'Scrumble';
   track = new Track();
   hint = this.track.hint;
   chars = this.track.answer.replace(/\s+/g, '').toUpperCase().split('').map((v) => v.charCodeAt(0))
-  moves: ('up' | 'left' | 'down' | 'right' | 'check' | 'x')[] = new Array(NUM_TRIES).fill('-');
-  shakeSubject = new Subject<void>();
-  noise = [generateNoise(), generateNoise()];
-  moveIdx = 0;
+  shakeSubject = new Subject<void>(); // todo
   showModal = false;
   copied = false;
   numColumns = this.chars.length + 4;
@@ -43,8 +40,25 @@ export class AppComponent {
     ['-', ['', '—']],
   ]);
 
+  ngOnInit(): void {
+
+    const track = localStorage.getItem('track');
+    console.log(track);
+    if (track) {
+      const parsedTrack = JSON.parse(track) as Track;
+      if (parsedTrack.hint === this.hint) {
+        this.track.moves = parsedTrack.moves;
+        this.track.moveIdx = parsedTrack.moveIdx;
+        this.track.noise = parsedTrack.noise;
+        this.track.j = parsedTrack.j;
+        this.track.k = parsedTrack.k;
+        this.showWelcomeModal = false;
+      }
+    }
+  }
+
   getLetters(offset = 0): string[] {
-    const baseArray = [...this.noise[0], ...this.chars, ...this.noise[1]];
+    const baseArray = [...this.track.noise[0], ...this.chars, ...this.track.noise[1]];
     return baseArray.map(
       (_, idx) => this.getStringFromUnicode(baseArray[Math.abs((idx + this.track.k) % baseArray.length)], offset)
     );
@@ -55,21 +69,22 @@ export class AppComponent {
   }
 
   getMoveDisplay(): string[] {
-    return this.moves.map((m) => this.emojiMap.get(m)![1]);
+    return this.track.moves.map((m) => this.emojiMap.get(m)![1]);
   }
 
   check() {
     if (this.isCorrect()) {
-      this.moves[this.moveIdx++] = 'check';
+      this.track.moves[this.track.moveIdx++] = 'check';
       this.solved = true;
       this.openModal();
     } else {
-      this.moves[this.moveIdx++] = 'x';
-      if (this.moveIdx === NUM_TRIES) {
+      this.track.moves[this.track.moveIdx++] = 'x';
+      if (this.track.moveIdx === NUM_TRIES) {
         this.openModal();
       }
       this.shakeSubject.next();
     }
+    localStorage.setItem('track', JSON.stringify({...this.track, answer: undefined}));
   }
 
   isCorrect(): boolean {
@@ -78,17 +93,18 @@ export class AppComponent {
 
   getCopyContent(): string {
     const start = 'Scrumble #' + moment().diff(moment(SCRUMBLE_DAY_ONE), 'day') + '\n' + '"' + this.track.hint + '"' + '\n';
-    return this.moves.reduce((prev, curr, idx) => prev + this.emojiMap.get(curr)![0] + ((idx + 1) % 4 === 0 ? '\n' : ''), start).replace('-', '');
+    return this.track.moves.reduce((prev, curr, idx) => prev + this.emojiMap.get(curr)![0] + ((idx + 1) % 4 === 0 ? '\n' : ''), start).replace('-', '');
   }
 
   saveMove(dir: 'up' | 'left' | 'down' | 'right'): void {
-    this.moves[this.moveIdx++] = dir;
+    this.track.moves[this.track.moveIdx++] = dir;
   }
 
   makeMove(dir: 'up' | 'left' | 'down' | 'right') {
     this.moveMap.get(dir)!();
     this.saveMove(dir);
-    if (this.moveIdx === NUM_TRIES) {
+    localStorage.setItem('track', JSON.stringify({...this.track, answer: undefined}));
+    if (this.track.moveIdx === NUM_TRIES) {
       this.openModal();
     }
   }
@@ -96,7 +112,7 @@ export class AppComponent {
   openModal() {
     this.showModal = true;
     this.copied = false;
-    this.won = this.moveIdx !== NUM_TRIES || this.isCorrect();
+    this.won = this.track.moveIdx !== NUM_TRIES || this.isCorrect();
     this.done = true;
   }
 

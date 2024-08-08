@@ -11,6 +11,9 @@ export class Track {
   answer = puzzleMap.get(moment().format('YYYY-MM-DD'))![1].toUpperCase();
   j: number;
   k: number;
+  moves: ('up' | 'left' | 'down' | 'right' | 'check' | 'x')[] = new Array(NUM_TRIES).fill('-');
+  moveIdx: number = 0;
+  noise = [generateNoise(), generateNoise()];
   constructor() {
     if (Math.random() < .5) {
       this.j = DISTANCE * -1 - 13;
