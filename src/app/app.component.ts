@@ -53,7 +53,7 @@ export class AppComponent implements OnInit {
         this.track.j = parsedTrack.j;
         this.track.k = parsedTrack.k;
         this.showWelcomeModal = false;
-        this.done = this.track.moveIdx === NUM_TRIES || !!this.track.moves.indexOf('check');
+        this.done = this.track.moveIdx === NUM_TRIES || this.track.moves.indexOf('check') !== -1;
       }
     }
   }
