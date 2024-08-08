@@ -94,7 +94,7 @@ export class AppComponent implements OnInit {
 
   getCopyContent(): string {
     const start = 'Scrumble #' + moment().diff(moment(SCRUMBLE_DAY_ONE), 'day') + '\n' + '"' + this.track.hint + '"' + '\n';
-    return this.track.moves.reduce((prev, curr, idx) => prev + this.emojiMap.get(curr)![0] + ((idx + 1) % 4 === 0 ? '\n' : ''), start).replace('-', '');
+    return this.track.moves.reduce((prev, curr, idx) => prev + this.emojiMap.get(curr)![0] + ((idx + 1) % 4 === 0 ? '\n' : ''), start).replace('-', '').slice(0, -1);
   }
 
   saveMove(dir: 'up' | 'left' | 'down' | 'right'): void {
