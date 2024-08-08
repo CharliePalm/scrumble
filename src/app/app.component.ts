@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ANSWER, NOISE_AMOUNT, NUM_TRIES, SCRUMBLE_DAY_ONE, Track, generateNoise, hint } from './app.model';
+import { NOISE_AMOUNT, NUM_TRIES, SCRUMBLE_DAY_ONE, Track, generateNoise } from './app.model';
 import * as moment from 'moment';
 import { Subject } from 'rxjs';
 
@@ -11,13 +11,13 @@ import { Subject } from 'rxjs';
 export class AppComponent {
   showWelcomeModal = true;
   NUM_TRIES = NUM_TRIES;
-  hint = hint;
   title = 'Scrumble';
   track = new Track();
+  hint = this.track.hint;
+  chars = this.track.answer.replace(/\s+/g, '').toUpperCase().split('').map((v) => v.charCodeAt(0))
   moves: ('up' | 'left' | 'down' | 'right' | 'check' | 'x')[] = new Array(NUM_TRIES).fill('-');
   shakeSubject = new Subject<void>();
   noise = [generateNoise(), generateNoise()];
-  chars = ANSWER.replace(/\s+/g, '').toUpperCase().split('').map((v) => v.charCodeAt(0))
   moveIdx = 0;
   showModal = false;
   copied = false;
@@ -73,11 +73,11 @@ export class AppComponent {
   }
 
   isCorrect(): boolean {
-    return (this.track.j - 13) % 26 === 0 && this.track.k % (ANSWER.length - 1 + NOISE_AMOUNT * 2) === 0;
+    return (this.track.j - 13) % 26 === 0 && this.track.k % (this.track.answer.length - 1 + NOISE_AMOUNT * 2) === 0;
   }
 
   getCopyContent(): string {
-    const start = 'Scrumble #' + moment().diff(moment(SCRUMBLE_DAY_ONE), 'day') + '\n' + '"' + hint + '"' + '\n';
+    const start = 'Scrumble #' + moment().diff(moment(SCRUMBLE_DAY_ONE), 'day') + '\n' + '"' + this.track.hint + '"' + '\n';
     return this.moves.reduce((prev, curr, idx) => prev + this.emojiMap.get(curr)![0] + ((idx + 1) % 4 === 0 ? '\n' : ''), start).replace('-', '');
   }
 
