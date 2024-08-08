@@ -41,9 +41,7 @@ export class AppComponent implements OnInit {
   ]);
 
   ngOnInit(): void {
-
     const track = localStorage.getItem('track');
-    console.log(track);
     if (track) {
       const parsedTrack = JSON.parse(track) as Track;
       if (parsedTrack.hint === this.hint) {
