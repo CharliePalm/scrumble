@@ -73,7 +73,7 @@ export class AppComponent {
   }
 
   isCorrect(): boolean {
-    return (this.track.j - 13) % 26 === 0 && this.track.k % (this.track.answer.length - 1 + NOISE_AMOUNT * 2) === 0;
+    return (this.track.j - 13) % 26 === 0 && this.track.k % (this.track.answer.length + 1) === 0;
   }
 
   getCopyContent(): string {
