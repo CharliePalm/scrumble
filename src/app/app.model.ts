@@ -17,7 +17,7 @@ export class Track {
     } else {
       this.j = DISTANCE + 13;
     }
-    this.k = 2 * (this.answer.length + 1);
+    this.k = this.answer.replace(/\s+/g, '').length + NOISE_AMOUNT * 2;
     if (Math.random() < .5) {
       this.k += DISTANCE * -1 ;
     } else {
