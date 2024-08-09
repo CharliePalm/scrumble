@@ -97,7 +97,7 @@ export class AppComponent implements OnInit {
   getCopyContent(): string {
     let content = 'Scrumble #' + moment().diff(moment(SCRUMBLE_DAY_ONE), 'day') + '\n' + '"' + this.track.hint + '"' + '\n';
     content = this.track.moves.reduce((prev, curr, idx) => prev + this.emojiMap.get(curr)![0] + ((idx + 1) % 4 === 0 ? '\n' : ''), content).replace('-', '').slice(0, -2);
-    if (this.isCorrect() && this.track.moves[this.track.moves.length - 1] !== this.emojiMap.get('check')![0]) {
+    if (this.isCorrect() && this.track.moves[this.track.moves.length - 1] !== 'check') {
       content += this.emojiMap.get('check')![0];
     }
     return content;
