@@ -35,6 +35,7 @@ export function generateNoise(): number[] {
   return new Array(NOISE_AMOUNT).fill(65).map((v) => Math.round((Math.random() * 25) + 65));
 }
 
+// this should be handled more secretly, but that requires effort that is truly not worth it. If you find this then look away!
 export const puzzleMap: Map<string, [string, string]> = new Map([
   ["2024-08-07", ["To blave", "To bluff"]],
   ["2024-08-08", ["A sauce, or a dance", "Salsa"]],
@@ -53,4 +54,23 @@ export const puzzleMap: Map<string, [string, string]> = new Map([
   ["2024-08-20", ["He who beams up", "Scotty"]],
   ["2024-08-22", ["Ontario's capital", "Toronto"]],
   ["2024-08-23", ["Our largest neighbor", "Jupiter"]],
+  ['2024-08-24', ["Movie based on the novel 'Do Androids Dream of Electric Sheep?'", 'Blade Runner']],
+  ['2024-08-25', ['Famous Russian ballet company', 'BOLSHOI']],
+  ['2024-08-26', ['Language used for web development', 'JAVASCRIPT']],
+  ['2024-08-27', ['Another term for a narrow street', 'ALLEY']],
+  ['2024-08-28', ['Funk powerhouse group born in Chicago', 'Earth Wind And Fire']],
+  ['2024-08-29', ['Spain\'s peninsula', 'Iberia']],
+  ['2024-08-30', ['Instrument with both strings and keys', 'PIANO']],
+  ['2024-08-31', ['Measurement of power in music equipment', 'WATTS']],
+  ['2024-09-01', ['Vegetable or fruit?', 'TOMATO']],
+  ['2024-09-02', ['An animal known for its ability to mimic sounds', 'PARROT']],
+  ['2024-09-03', ['Board game involving real estate', 'MONOPOLY']],
+  ['2024-09-04', ["Meaning 'normal', especially referencing religion", 'Orthodox']],
+  ['2024-09-05', ['Colombia\'s Northeast neighbor', 'Panama']],
+  ['2024-09-06', ['A large meal', 'FEAST']],
+  ['2024-09-07', ['Planet known for its rings', 'SATURN']],
+  ['2024-09-08', ['A fastener used in clothing', 'ZIPPER']],
+  ['2024-09-09', ['Sport that seems a cousin to baseball', 'Cricket']],
+  ['2024-09-10', ['The longest river in the world', 'NILE']],
+  ['2024-09-11', ['Opposite of urban', 'RURAL']],
 ]);
