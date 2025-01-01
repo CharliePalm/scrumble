@@ -37,7 +37,7 @@ export function generateNoise(): number[] {
 
 // this should be handled more secretly, but that requires effort that is truly not worth it. If you find this then look away!
 export const puzzleMap: Map<string, [string, string]> = new Map([
-  ['2025-01-01', ['What happens at every Ney Years party', 'Countdown']],
+  ['2025-01-01', ['What happens at every New Years party', 'Countdown']],
   ['2025-01-02', ['Meaning "Moon"', 'Lunar']],
   ['2025-01-03', ['Substitute for "Vacation" in British English', 'Holiday']],
   ['2025-01-04', ['School groundskeeper in "The Simpsons"', 'Willie']],
