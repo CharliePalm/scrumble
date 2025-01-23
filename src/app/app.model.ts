@@ -37,20 +37,7 @@ export function generateNoise(): number[] {
 
 // this should be handled more secretly, but that requires effort that is truly not worth it. If you find this then look away!
 export const puzzleMap: Map<string, [string, string]> = new Map([
-  ['2025-01-01', ['What happens at every New Years party', 'Countdown']],
-  ['2025-01-02', ['Meaning "Moon"', 'Lunar']],
-  ['2025-01-03', ['Substitute for "Vacation" in British English', 'Holiday']],
-  ['2025-01-04', ['School groundskeeper in "The Simpsons"', 'Willie']],
-  ['2025-01-05', ['Author George R.R.', 'Martin']],
-  ['2025-01-06', ['"Star Wars" dynasty', 'Skywalker']],
-  ['2025-01-07', ['Father of the Romantic era of classical music', 'Beethoven']],
-  ['2025-01-08', ['Corporation that specializes in art supplies for children', 'Crayola']],
-  ['2025-01-09', ['Harmless, North American snake species', 'Garter']],
-  ['2025-01-10', ['The largest city in Pennsylvania, for short', 'Philly']],
-  ['2025-01-11', ['Hurricane, sans water', 'Tornado']],
-  ['2025-01-12', ['Cuban genre of music that involves complex, interweaving drum parts. Also a Spanish word used to describe a loud party', 'Rumba']],
-  ['2025-01-13', ['Ancient empire responsible for the Epic of Gilgamesh', 'Sumeria']],
-  ['2025-01-14', ['Prominent French impressionist painter', 'Monet']],
-  ['2025-01-15', ['The capital of Chile', 'Santiago']],
-  ['2025-01-16', ['Charli XCX Album of the Year contender', 'Brat']],
+  ['2025-01-23', ['"Dungeons and Dragons" substitute for Hobbit', 'Halfling']],
+  ['2025-01-24', ['Liquid part of blood', 'Plasma']],
+  ['2025-01-25', ['Romantic-era classical composer known for his dream-like ambience', 'Debussy']],
 ]);
